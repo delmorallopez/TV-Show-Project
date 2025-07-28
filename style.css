@@ -1,3 +1,50 @@
-#root {
-  color: red;
+#episode-container {
+  color: rgb(16, 10, 10);
+}
+
+
+.header-line {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Optional spacing between title and season number */
+  border: 1px solid #090808;
+  border-radius: 10px;  
+    padding: 12px; /* Adjust the value as needed */
+}
+
+.header-line h2,
+.header-line h3 {
+  margin: 0; /* Remove default spacing */
+}
+
+#episode-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 20px; /* spacing between cards */
+  padding: 20px;
+}
+
+
+.image {
+  margin-top: 12px; /* adds space above the image */
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+.title {
+  margin-bottom: 8px; /* space below title */
+}
+
+.episode {
+  border: 1px solid #ccc;
+  border-radius: 10px;         /* Increased curve for rounded corners */
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
