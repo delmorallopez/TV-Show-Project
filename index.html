@@ -10,29 +10,29 @@
 
   <body>
 
-    <div id="episode-container">
-      <template id="episode-template">
-        <div class="episode">
-          <div class="header-line">
-            <h2 class="title"></h2>
-            <h3 class="season-number"></h3>
-          </div>
-          <image class="image" />
-          <p class="summary"></p>
+    <template id="episode-template">
+      <div class="episode">
+        <div class="header-line">
+          <h2 class="title"></h2>
+          <h3 class="season-number"></h3>
         </div>
-      </template>
-    </div>
-    
-    <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
+        <img class="image" />
+        <p class="summary"></p>
+      </div>
+    </template>
+  
+    <div id="episode-container"></div>
+  
+    <!-- Scripts -->
     <script src="episodes.js"></script>
-
-    <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
-
+  
     <footer>
       Data sourced from <a href="https://tvmaze.com/" target="_blank" rel="noopener">TVMaze.com</a>
     </footer>
-
+  
   </body>
+  
+  
 </html>
 
