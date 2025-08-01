@@ -58,6 +58,9 @@ function render() {
     return nameMatch || summaryMatch;
   });
 
+  const searchCount = document.getElementById("search-count");
+  searchCount.innerHTML = `displaying:${filteredEpisodes.length}/${appState.allEpisodes.length}`;
+
   // 3. Render the episodes
   const episodeElemments = filteredEpisodes.map(createFilmCard); // This line maps each episode to a card element
   episodeElemments.forEach((elem) => {
