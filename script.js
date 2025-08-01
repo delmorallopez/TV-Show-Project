@@ -35,16 +35,13 @@ const createFilmCard = (film) => {
 };
 
 const searchInput = document.getElementById("mySearch");
-searchInput.addEventListener("input", function () {
-  const inputValue = searchInput.value.toLowerCase();
-  const allEpisodes = getAllEpisodes();
+searchInput.addEventListener("input", handleSearchInput);
 
-  const filteredEpisode = allEpisodes.filter((episode) => {
-    const nameMatch = episode.name.toLowerCase().includes(inputValue);
-    const summaryMatch = episode.summary.toLowerCase().includes(inputValue);
-    return nameMatch || summaryMatch;
-  });
-});
+function handleSearchInput(event) {
+  appState.searchTerm = event.target.value;
+  render();
+}
+
 function render() {
   // 1. Clear the container
   const rootElem = document.getElementById("episode-container");
