@@ -1,8 +1,11 @@
-//You can edit ALL of the code here
 function setup() {
-  const allEpisodes = getAllEpisodes(); // This function give all episodes
   makePageForEpisodes(allEpisodes);
 }
+const allEpisodes = getAllEpisodes();
+const appState = {
+  allEpisodes,
+  searchTerm: "",
+};
 
 function makePageForEpisodes(episodeList) {
   // This function takes an array of episodes and creates the HTML for each episode
