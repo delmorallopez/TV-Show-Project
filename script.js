@@ -1,5 +1,6 @@
 function setup() {
   render();
+  populateEpisodeSelector();
 }
 const allEpisodes = getAllEpisodes();
 const appState = {
@@ -68,5 +69,18 @@ function render() {
     rootElem.appendChild(elem); // Appending the created episode element to the root element
   });
 }
+const populateEpisodeSelector = () => {
+  for (let i = 0; i < appState.allEpisodes.length; i++) {
+    const option = document.createElement("option");
+    const episode = appState.allEpisodes[i];
+    option.innerHTML = `S${episode.season
+      .toString()
+      .padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}-${
+      episode.name
+    }`;
+    const select = document.getElementById("episode-select");
+    select.appendChild(option);
+  }
+};
 
 window.onload = setup;

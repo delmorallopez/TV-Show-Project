@@ -9,6 +9,7 @@
   gap: 15px;
   margin: 20px;
   padding: 10px;
+  flex-wrap: nowrap; /* Prevent wrapping to next line */
 }
 
 /* Search count styling */
@@ -17,6 +18,15 @@
   font-size: 14px;
   font-style: italic;
   margin-left: 10px;
+}
+
+/* Episode selector styling */
+#episode-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 200px; /* Give it a reasonable width */
 }
 
 .header-line {
