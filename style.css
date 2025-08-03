@@ -2,14 +2,62 @@
   color: rgb(16, 10, 10);
 }
 
+/* Search container styling */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 20px;
+  padding: 10px;
+  flex-wrap: nowrap; /* Prevent wrapping to next line */
+}
+
+/* Search count styling */
+#search-count {
+  color: #666; /* Lighter gray color */
+  font-size: 14px;
+  font-style: italic;
+  margin-left: 10px;
+}
+
+/* Episode selector styling */
+#episode-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 200px; 
+}
+
+/* Scroll back button styling */
+[data-button="scroll-back"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin: 20px auto;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+[data-button="scroll-back"]:hover {
+  background-color: #0056b3;
+}
+
+[data-button="scroll-back"]:active {
+  background-color: #004085;
+}
 
 .header-line {
   display: flex;
   align-items: center;
   gap: 10px; /* Optional spacing between title and season number */
   border: 1px solid #090808;
-  border-radius: 10px;  
-    padding: 12px; /* Adjust the value as needed */
+  border-radius: 10px;
+  padding: 12px; /* Adjust the value as needed */
 }
 
 .header-line h2,
@@ -23,7 +71,6 @@
   gap: 20px; /* spacing between cards */
   padding: 20px;
 }
-
 
 .image {
   margin-top: 12px; /* adds space above the image */
@@ -39,7 +86,7 @@
 
 .episode {
   border: 1px solid #ccc;
-  border-radius: 10px;         /* Increased curve for rounded corners */
+  border-radius: 10px; /* Increased curve for rounded corners */
   padding: 20px;
   margin: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -47,4 +94,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
 }
