@@ -70,17 +70,45 @@ function render() {
   });
 }
 const populateEpisodeSelector = () => {
+  const select = document.getElementById("episode-select");
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Select an Episode";
+  defaultOption.selected = true; // This makes it the default selection
+  select.appendChild(defaultOption);
   for (let i = 0; i < appState.allEpisodes.length; i++) {
     const option = document.createElement("option");
+    option.value = i;
     const episode = appState.allEpisodes[i];
     option.innerHTML = `S${episode.season
       .toString()
       .padStart(2, "0")}E${episode.number.toString().padStart(2, "0")}-${
       episode.name
     }`;
-    const select = document.getElementById("episode-select");
+
     select.appendChild(option);
   }
 };
+const episodeSelector = document.getElementById("episode-select");
+episodeSelector.addEventListener("change", function () {
+  const selectedIndex = this.value;
+  selectedEpisode = appState.allEpisodes[selectedIndex];
+
+  const rootElem = document.getElementById("episode-container");
+  rootElem.innerHTML = "";
+  const existingButtons = document.querySelectorAll(
+    '[data-button="scroll-back"]'
+  );
+  existingButtons.forEach((button) => button.remove());
+  const scrollBack = document.createElement("button");
+  scrollBack.setAttribute("data-button", "scroll-back");
+  scrollBack.textContent = "Back to All Episodes";
+  scrollBack.addEventListener("click", function () {
+    render();
+  });
+  const footer = document.querySelector("footer");
+  document.body.insertBefore(scrollBack, footer);
+  rootElem.appendChild(createFilmCard(selectedEpisode));
+});
 
 window.onload = setup;
