@@ -9,30 +9,47 @@
   </head>
 
   <body>
-
-    <template id="episode-template">
-      <div class="episode">
-        <div class="header-line">
-          <h2 class="title"></h2>
-          <h3 class="season-number"></h3>
-        </div>
-        <img class="image" />
-        <p class="summary"></p>
+    <div id="message"></div>
+    <div class="search-container">
+      <div class="dropdown">
+        <label for="episode-select" class="visually-hidden"
+          >Select episode</label
+        >
+        <select
+          name="episode-select"
+          id="episode-select"
+          title="Select episode"
+        ></select>
       </div>
-    </template>
-  
-    <div id="episode-container"></div>
-  
-    <!-- Scripts -->
-    <script src="episodes.js"></script>
-    <script src="script.js"></script>
-  
-    <footer>
-      Data sourced from <a href="https://tvmaze.com/" target="_blank" rel="noopener">TVMaze.com</a>
-    </footer>
-  
-  </body>
-  
-  
-</html>
+      <label for="mySearch" class="visually-hidden">Search episodes</label>
+      <input type="search" id="mySearch" placeholder="Search episodes..." />
+      <div id="search-count"></div>
+    </div>
 
+    <div id="episode-container">
+      <template id="episode-template">
+        <div class="episode">
+          <div class="header-line">
+            <h2 class="title"></h2>
+            <h3 class="season-number"></h3>
+          </div>
+          <image class="image" />
+          <p class="summary"></p>
+        </div>
+      </template>
+    </div>
+
+    <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
+    <script src="episodes.js"></script>
+
+    <!-- Loads YOUR javascript code -->
+    <script src="script.js"></script>
+
+    <footer>
+      Data sourced from
+      <a href="https://tvmaze.com/" target="_blank" rel="noopener"
+        >TVMaze.com</a
+      >
+    </footer>
+  </body>
+</html>
