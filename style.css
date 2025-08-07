@@ -28,6 +28,20 @@
   font-size: 14px;
   min-width: 200px; 
 }
+#show-select {
+    padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 200px; 
+}
+#mySearch {
+    padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 200px; 
+}
 
 /* Scroll back button styling */
 [data-button="scroll-back"] {

@@ -1,20 +1,63 @@
 function setup() {
-  fetchEpisode();
+  fetchShows();
+
 }
 
 const appState = {
+  shows: [],
   episodes: [],
   searchTerm: "",
   isLoading: true,
   error: null,
 };
-
-async function fetchEpisode() {
+async function fetchShows() {
   try {
-    const response = await fetch("https://api.tvmaze.com/shows/82/episodes");
+    const response = await fetch("https://api.tvmaze.com/shows");
+    const data = await response.json();
+    console.log(data);
+    appState.shows = data;
+    appState.shows.sort((a, b) =>
+      a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+    );
+    render();
+    populateshowSelector();
+  } catch (error) {
+    console.log(error);
+  }
+}
+const populateshowSelector = () => {
+  const select = document.getElementById("show-select");
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Select a show";
+  defaultOption.selected = true; // This makes it the default selection
+  select.appendChild(defaultOption);
+  for (let i = 0; i < appState.shows.length; i++) {
+    const option = document.createElement("option");
+    const show = appState.shows[i];
+    option.value = `${show.id}`;
+    option.innerHTML = `${show.name}`;
+    select.appendChild(option);
+  }
+};
+const showSelector = document.getElementById("show-select");
+showSelector.addEventListener("change", function () {
+  const selectedShowId = this.value;
+  if (selectedShowId) {
+    fetchEpisodes(selectedShowId);
+  }
+});
+
+async function fetchEpisodes(showId) {
+  try {
+    appState.isLoading = true;
+    const response = await fetch(
+      `https://api.tvmaze.com/shows/${showId}/episodes`
+    );
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     const data = await response.json();
     appState.episodes = data;
+    console.log(data);
     appState.isLoading = false;
     render();
     populateEpisodeSelector();
