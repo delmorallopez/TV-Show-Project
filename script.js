@@ -1,11 +1,11 @@
 function setup() {
   fetchShows();
-
 }
 
 const appState = {
   shows: [],
-  episodes: [],
+  episodes: null,
+  fetchedEpisodes: {}, // Cache object to store fetched episodes by show ID
   searchTerm: "",
   isLoading: true,
   error: null,
@@ -49,6 +49,12 @@ showSelector.addEventListener("change", function () {
 });
 
 async function fetchEpisodes(showId) {
+  if (appState.fetchedEpisodes[showId]) {
+    appState.episodes = appState.fetchedEpisodes[showId];
+    render();
+    return;
+  }
+
   try {
     appState.isLoading = true;
     const response = await fetch(
@@ -56,8 +62,8 @@ async function fetchEpisodes(showId) {
     );
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     const data = await response.json();
+    appState.fetchedEpisodes[showId] = data;
     appState.episodes = data;
-    console.log(data);
     appState.isLoading = false;
     render();
     populateEpisodeSelector();
@@ -69,7 +75,7 @@ async function fetchEpisodes(showId) {
     <div class="error-message">
       <h3>Error loading episodes</h3>
       <p>${appState.error}</p>
-      <button onclick="fetchEpisodes()">Retry</button>
+<button onclick="fetchEpisodes(${showId})">Retry</button>
     </div>
   `;
   }
@@ -128,6 +134,10 @@ function render() {
     return;
   }
   rootElem.innerHTML = "";
+  if (appState.episodes === null || appState.episodes.length === 0) {
+    // Handle empty state firs
+    return;
+  }
 
   // 2. Filter the episodes
   const filteredEpisodes = appState.episodes.filter((episode) => {
@@ -144,8 +154,8 @@ function render() {
   searchCount.innerHTML = `displaying:${filteredEpisodes.length}/${appState.episodes.length}`;
 
   // 3. Render the episodes
-  const episodeElemments = filteredEpisodes.map(createFilmCard); // This line maps each episode to a card element
-  episodeElemments.forEach((elem) => {
+  const episodeElements = filteredEpisodes.map(createFilmCard); // This line maps each episode to a card element
+  episodeElements.forEach((elem) => {
     // This line appends each card element to the root element
     rootElem.appendChild(elem); // Appending the created episode element to the root element
   });
