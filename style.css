@@ -1,49 +1,66 @@
-#episode-container {
-  color: rgb(16, 10, 10);
+/* ---------- GENERAL ---------- */
+body {
+  font-family: Arial, sans-serif;
+  margin: 2rem;
+  background-color: #f9f9f9;
+  color: #333;
 }
 
-/* Search container styling */
+h1, h2 {
+  margin: 0.5rem 0;
+}
+/* Hover effect */
+button:hover,
+[data-button="scroll-back"]:hover {
+  background: linear-gradient(135deg, #574bff, #00bcd4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Active / pressed effect */
+button:active,
+[data-button="scroll-back"]:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional: focus outline for accessibility */
+button:focus,
+[data-button="scroll-back"]:focus {
+  outline: 2px solid #6c63ff;
+  outline-offset: 3px;
+}
+
+
+/* ---------- SEARCH CONTAINERS ---------- */
 .search-container {
   display: flex;
   align-items: center;
   gap: 15px;
   margin: 20px;
   padding: 10px;
-  flex-wrap: nowrap; /* Prevent wrapping to next line */
+  flex-wrap: nowrap;
 }
 
-/* Search count styling */
 #search-count {
-  color: #666; /* Lighter gray color */
+  color: #666;
   font-size: 14px;
   font-style: italic;
   margin-left: 10px;
 }
 
-/* Episode selector styling */
-#episode-select {
+#episode-select,
+#show-select,
+#mySearch {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
-  min-width: 200px; 
-}
-#show-select {
-    padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  min-width: 200px; 
-}
-#mySearch {
-    padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  min-width: 200px; 
+  min-width: 200px;
 }
 
-/* Scroll back button styling */
+/* ---------- SCROLL BUTTON ---------- */
+
 [data-button="scroll-back"] {
   background-color: #007bff;
   color: white;
@@ -63,57 +80,165 @@
 
 [data-button="scroll-back"]:active {
   background-color: #004085;
+} 
+
+/* ------------- BACK TO SHOW BUTTON ------------------------- */
+.back-to-shows-button {
+  font-size: 18px;                /* bigger text */
+  padding: 12px 24px;             /* more padding */
+  border-radius: 10px;            /* rounded corners */
+  background: linear-gradient(90deg, #007bff, #00aaff); /* gradient */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+  display: inline-block;
 }
 
+.back-to-shows-button:hover {
+  background: linear-gradient(90deg, #0056b3, #0088cc);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* ---------- EPISODE CONTAINER ---------- */
+
+#episode-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 episodes per row */
+  gap: 1rem;
+  padding: 20px;
+  color: rgb(16, 10, 10);
+}
+
+/* Episode card styling */
+.episode {
+  display: flex;
+  flex-direction: column;        /* title on top */
+  gap: 0.5rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  min-height: 180px;
+  border: 0.5cap solid #ccc;
+}
+
+/* Episode title */
+.episode .title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #222;
+  text-align: left;
+}
+
+/* Episode content: image + info side by side */
+.episode-content {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+/* Episode image */
+.episode .image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* Episode info container */
+.episode-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+/* Episode summary */
+.episode .summary {
+  font-size: 0.9rem;
+  color: #555;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* Episode details */
+.episode .details {
+  font-size: 0.8rem;
+  color: #777;
+  text-align: left;
+}
+
+/* ---------- SHOW CARDS ---------- */
+.show-card {
+  border: 0.5cap solid #ccc;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  border-radius: 8px;
+}
+
+.show-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+}
+
+.show-content {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start; /* aligns image with top of card */
+}
+
+.show-card img {
+  width: 120px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.show-summary {
+  flex: 2;
+  font-size: 1.0rem;
+  font-style: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6; /* show only 3 lines */
+  -webkit-box-orient: vertical;
+}
+
+.show-details {
+  flex: 1;
+    font-size: 0.85rem;
+}
+/* ---------- SHOW CONTAINER ---------- */
+.show-container {
+  display: flex;
+  flex-direction: column; /* one show per line */
+  gap: 1rem;
+}
+
+/* ---------- HEADER LINES ---------- */
 .header-line {
   display: flex;
   align-items: center;
-  gap: 10px; /* Optional spacing between title and season number */
+  gap: 10px;
   border: 1px solid #090808;
   border-radius: 10px;
-  padding: 12px; /* Adjust the value as needed */
+  padding: 12px;
 }
 
 .header-line h2,
 .header-line h3 {
-  margin: 0; /* Remove default spacing */
-}
-
-#episode-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns */
-  gap: 20px; /* spacing between cards */
-  padding: 20px;
-}
-
-.image {
-  margin-top: 12px; /* adds space above the image */
-  max-width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 4px;
-}
-
-.title {
-  margin-bottom: 8px; /* space below title */
-}
-
-.episode {
-  border: 1px solid #ccc;
-  border-radius: 10px; /* Increased curve for rounded corners */
-  padding: 20px;
-  margin: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.visually-hidden {
-  position: absolute;
-  clip: rect(0 0 0 0);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
+  margin: 0;
 }

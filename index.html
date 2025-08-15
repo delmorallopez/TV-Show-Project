@@ -10,56 +10,61 @@
 
   <body>
     <div class="search-container">
-            <div class="dropdown">
-        <label for="show-select" class="visually-hidden"
-          >Select show</label
-        >
-        <select
-          name="show-select"
-          id="show-select"
-          title="Select show"
-        >
-      </select>
-      </div>
+      
+      <!-- Show Dropdown -->
       <div class="dropdown">
-        <label for="episode-select" class="visually-hidden"
-          >Select episode</label
-        >
-        <select
-          name="episode-select"
-          id="episode-select"
-          title="Select episode"
-        ></select>
+        <label for="show-select" class="visually-hidden">Select show</label>
+        <select name="show-select" id="show-select" title="Select show"></select>
       </div>
+      
+      <!-- 🔍 Show Search -->
+      <label for="showSearch" class="visually-hidden">Search shows</label>
+      <input
+        type="search"
+        id="showSearch"
+        placeholder="Search shows..."
+        title="Search shows by name, genre, or summary"
+      />
+
+      <!-- Episode Dropdown -->
+      <div class="dropdown">
+        <label for="episode-select" class="visually-hidden">Select episode</label>
+        <select name="episode-select" id="episode-select" title="Select episode"></select>
+      </div>
+
+      <!-- Episode Search -->
       <label for="mySearch" class="visually-hidden">Search episodes</label>
       <input type="search" id="mySearch" placeholder="Search episodes..." />
+
       <div id="search-count"></div>
     </div>
 
     <div id="episode-container">
       <template id="episode-template">
         <div class="episode">
-          <div class="header-line">
-            <h2 class="title"></h2>
-            <h3 class="season-number"></h3>
+          <!-- Episode title on top -->
+          <div class="title">Episode Title</div>
+    
+          <!-- Episode content: image + summary/details -->
+          <div class="episode-content">
+            <img class="image" src="" alt="Episode image" />
+            <div class="episode-info">
+              <p class="summary"></p>
+              <div class="details">
+                <span class="season-number"></span>
+              </div>
+            </div>
           </div>
-          <image class="image" />
-          <p class="summary"></p>
         </div>
       </template>
     </div>
-
-    <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
+    
     <script src="episodes.js"></script>
-
-    <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
 
     <footer>
       Data sourced from
-      <a href="https://tvmaze.com/" target="_blank" rel="noopener"
-        >TVMaze.com</a
-      >
+      <a href="https://tvmaze.com/" target="_blank" rel="noopener">TVMaze.com</a>
     </footer>
   </body>
 </html>
